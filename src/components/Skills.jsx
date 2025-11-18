@@ -1,50 +1,50 @@
 import { useState, useEffect, useRef } from 'react';
 
 const skills = [
-  { 
-    icon: "⚛️", 
-    title: "Frontend", 
-    desc: "React, Vue, TypeScript, Modern CSS",
-    color: "from-blue-500 to-cyan-400",
-    bgColor: "from-blue-500/10 to-cyan-400/10",
-    level: 95,
-    experience: "4+ years",
-    projects: 25,
-    pattern: "react"
-  },
-  { 
-    icon: "🔧", 
-    title: "Backend", 
-    desc: "Node.js, Express, Prisma, PostgreSQL",
-    color: "from-green-500 to-emerald-400",
-    bgColor: "from-green-500/10 to-emerald-400/10",
-    level: 90,
-    experience: "3+ years",
-    projects: 18,
+  {
+    icon: "🧩",
+    title: "MERN & Full‑Stack",
+    desc: "JavaScript, TypeScript, React.js, Node.js, Express.js, Next.js",
+    color: "from-emerald-500 to-green-400",
+    bgColor: "from-emerald-500/10 to-green-400/10",
+    level: 92,
+    experience: "2+ years",
+    projects: 6,
     pattern: "server"
   },
-  { 
-    icon: "🎨", 
-    title: "Design", 
-    desc: "UI/UX, Figma, Animation, Responsive Design",
-    color: "from-pink-500 to-purple-400",
-    bgColor: "from-pink-500/10 to-purple-400/10",
-    level: 88,
-    experience: "5+ years",
-    projects: 32,
-    pattern: "design"
+  {
+    icon: "🎨",
+    title: "Frontend & UI",
+    desc: "React.js, Tailwind CSS, Framer Motion, Responsive UI/UX",
+    color: "from-blue-500 to-cyan-400",
+    bgColor: "from-blue-500/10 to-cyan-400/10",
+    level: 90,
+    experience: "2+ years",
+    projects: 6,
+    pattern: "react"
   },
-  { 
-    icon: "☁️", 
-    title: "Cloud", 
-    desc: "AWS, Docker, CI/CD, Performance Optimization",
+  {
+    icon: "🗄️",
+    title: "Backend & Databases",
+    desc: "PostgreSQL (Neon), MongoDB, Prisma ORM, REST APIs",
+    color: "from-purple-500 to-pink-500",
+    bgColor: "from-purple-500/10 to-pink-500/10",
+    level: 88,
+    experience: "1.5+ years",
+    projects: 4,
+    pattern: "cloud"
+  },
+  {
+    icon: "⚙️",
+    title: "Tools & Platforms",
+    desc: "Git, GitHub, Clerk, Firebase, Postman, Vercel, OpenAI API",
     color: "from-orange-500 to-yellow-400",
     bgColor: "from-orange-500/10 to-yellow-400/10",
     level: 85,
     experience: "2+ years",
-    projects: 12,
-    pattern: "cloud"
-  },
+    projects: 8,
+    pattern: "design"
+  }
 ];
 
 export default function Skills() {
@@ -416,16 +416,18 @@ export default function Skills() {
       <div className={`text-center mt-20 transform transition-all duration-1000 delay-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
         <div className="bg-gray-900/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-700/30 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-green-500/5 via-pink-500/5 to-orange-500/5 animate-rainbow bg-[length:400%_400%]" />
-          <h3 className="relative text-2xl font-bold bg-gradient-to-r from-yellow-500 to-emerald-400 bg-clip-text text-transparent mb-4">
-            Ready to Build Something Amazing?
-          </h3>
-          <p className="relative text-gray-300 mb-6">
-            Let's combine these skills to create exceptional digital experiences
-          </p>
-          <button className="relative group px-12 py-4 bg-gradient-to-r from-yellow-500 via-emerald-400 to-pink-500 rounded-full font-bold text-black text-lg overflow-hidden transform hover:scale-110 transition-all duration-300 animate-rainbow bg-[length:400%_400%]">
-            <span className="relative z-10">Get In Touch</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </button>
+<h3 className="relative text-2xl font-bold bg-gradient-to-r from-yellow-500 to-emerald-400 bg-clip-text text-transparent mb-4">
+  Open to SDE / Full‑Stack Opportunities
+</h3>
+<p className="relative text-gray-300 mb-6">
+  If you&apos;re looking for a developer who can own features end‑to‑end across React, Node.js, and PostgreSQL, I&apos;d love to work with you.
+</p>
+<a href="mailto:keshavraj9954@gmail.com">
+  <button className="relative group px-12 py-4 bg-gradient-to-r from-yellow-500 via-emerald-400 to-pink-500 rounded-full font-bold text-black text-lg overflow-hidden transform hover:scale-110 transition-all duration-300 animate-rainbow bg-[length:400%_400%]">
+    <span className="relative z-10">Hire Me</span>
+    <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+  </button>
+</a>
         </div>
       </div>
 

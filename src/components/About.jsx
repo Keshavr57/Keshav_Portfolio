@@ -8,13 +8,25 @@ export default function About() {
   const [particles, setParticles] = useState([]);
   const sectionRef = useRef(null);
 
-  const paragraphs = [
-    "I'm a passionate web developer and creative builder who believes in elegant code and thoughtful design. I create digital experiences that inspire and delight users.",
-    "My journey in web development is driven by curiosity and a desire to push the boundaries of what's possible. I specialize in modern web technologies with clean, maintainable code.",
-    "When not coding, I explore new technologies, contribute to open-source, and mentor aspiring developers."
-  ];
+const paragraphs = [
+  "I am a full‑stack developer focused on building scalable web applications with the MERN stack. I enjoy turning product ideas into fast, reliable experiences using modern JavaScript frameworks.",
+  "I have hands‑on experience with React.js, Node.js, Express.js, PostgreSQL (Neon), authentication (JWT, Clerk), and integrations like OpenAI APIs. I’ve built projects such as Aivora AI, CompareX, and this portfolio to solve real‑world problems.",
+  "I actively improve my problem‑solving skills through LeetCode (120+ problems solved) and open‑source contributions like Hacktoberfest. I’m currently pursuing a Bachelor of Applied Science (Computer Science) at Rishihood University × Newton School of Technology and looking for full‑stack / web developer opportunities."
+];
 
-  const skills = ['React', 'JavaScript', 'Node.js', 'CSS', 'Python', 'MongoDB', 'Express', 'Git'];
+const skills = [
+  'JavaScript',
+  'TypeScript',
+  'React.js',
+  'Node.js',
+  'Express.js',
+  'Next.js',
+  'PostgreSQL (Neon)',
+  'MongoDB',
+  'Tailwind CSS',
+  'OpenAI API',
+  'Git & GitHub'
+];
 
   useEffect(() => {
     const observer = new IntersectionObserver(

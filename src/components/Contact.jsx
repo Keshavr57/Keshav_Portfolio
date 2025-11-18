@@ -76,19 +76,29 @@ export default function Contact() {
     }, 1000);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    if (formProgress < 75) return;
+
     setIsSubmitting(true);
 
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+    const { name, email, subject, message } = formData;
+
+    const mailSubject = subject || `New hiring inquiry from ${name || 'your portfolio'}`;
+    const mailBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+
+    const mailtoLink = `mailto:keshavraj9954@gmail.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+
+    window.location.href = mailtoLink;
+
     setIsSubmitting(false);
     setSubmitSuccess(true);
-    
+
+    setFormData({ name: '', email: '', subject: '', message: '' });
+    setFormProgress(0);
+
     setTimeout(() => {
-      setFormData({ name: '', email: '', subject: '', message: '' });
       setSubmitSuccess(false);
-      setFormProgress(0);
     }, 3000);
   };
 
@@ -155,13 +165,13 @@ export default function Contact() {
         <h2 className={`text-5xl md:text-6xl font-serif transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-20 opacity-0'}`}>
           <span className="relative inline-block">
             <span className="absolute inset-0 bg-gradient-to-r from-yellow-500 via-emerald-400 to-purple-500 bg-clip-text text-transparent blur-sm animate-pulse">
-              Let's Create Together
+              Ready for the Next Adventure?
             </span>
             <span className="absolute inset-0 bg-gradient-to-r from-yellow-500 via-emerald-400 to-purple-500 bg-clip-text text-transparent blur-md opacity-50">
-              Let's Create Together
+              Ready for the Next Adventure?
             </span>
             <span className="relative bg-gradient-to-r from-yellow-500 via-emerald-400 to-purple-500 bg-clip-text text-transparent animate-contact-glow bg-[length:300%_300%]">
-              Let's Create Together
+              Ready for the Next Adventure?
             </span>
           </span>
         </h2>
@@ -251,7 +261,7 @@ export default function Contact() {
               <div className="relative">
                 <div className="absolute left-4 top-6 text-xl z-10">{getFieldIcon('message')}</div>
                 <textarea 
-                  placeholder="Tell me about your project vision..." 
+                  placeholder="Share details about the role, your company, and why you&#39;re a good fit..." 
                   required 
                   rows={6}
                   value={formData.message}

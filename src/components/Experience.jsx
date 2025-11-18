@@ -1,50 +1,40 @@
 import { useState, useEffect, useRef } from 'react';
 
 const experiences = [
-  { 
-    title: "GDG Ideathon Runner-up", 
-    desc: "Secured second place in the Google Developer Groups Ideathon with an innovative web solution.",
-    year: "2024",
-    icon: "🏆",
+  {
+    title: "First Place – DCODE Hackathon",
+    desc: "Developed a MERN‑based AI ranking model and led frontend integration to deliver a smooth and impactful user experience.",
+    year: "Oct 2025",
+    icon: "🥇",
     color: "from-amber-500 to-orange-600",
     bgColor: "from-amber-500/10 to-orange-600/10",
-    achievement: "2nd Place",
-    participants: "500+ Teams",
+    achievement: "1st Place",
+    participants: "Competitive Hackathon",
     category: "Competition"
   },
-  { 
-    title: "Hacktoberfest Contributor", 
-    desc: "Contributed to open-source projects, improving codebases and supporting developer community.",
-    year: "2023",
-    icon: "🔧",
+  {
+    title: "Runner‑up – GDG Ideathon",
+    desc: "Designed and pitched an innovative tech solution addressing real‑world challenges as part of the Google Developer Groups Ideathon.",
+    year: "Jan 2025",
+    icon: "🏆",
     color: "from-green-500 to-emerald-600",
     bgColor: "from-green-500/10 to-emerald-600/10",
-    achievement: "25+ PRs",
-    participants: "Global Event",
-    category: "Open Source"
+    achievement: "2nd Place",
+    participants: "GDG Event",
+    category: "Competition"
   },
-  { 
-    title: "Community Volunteer", 
-    desc: "Mentored newcomers and organized workshops in web development.",
-    year: "2023",
-    icon: "🎓",
+  {
+    title: "Hacktoberfest Contributor",
+    desc: "Contributed and merged multiple PRs to open‑source repositories, improving UI and API integration while collaborating with global developers.",
+    year: "Oct 2024",
+    icon: "🛠️",
     color: "from-blue-500 to-cyan-600",
     bgColor: "from-blue-500/10 to-cyan-600/10",
-    achievement: "50+ Mentees",
-    participants: "Local Community",
-    category: "Education"
+    achievement: "Multiple PRs",
+    participants: "Global Open Source",
+    category: "Open Source"
   },
-  { 
-    title: "Professional Certifications", 
-    desc: "Completed multiple certifications in modern web technologies and cloud computing.",
-    year: "2022-2024",
-    icon: "📜",
-    color: "from-purple-500 to-pink-600",
-    bgColor: "from-purple-500/10 to-pink-600/10",
-    achievement: "6+ Certs",
-    participants: "Self-Paced",
-    category: "Learning"
-  },
+
 ];
 
 export default function Experience() {
@@ -429,16 +419,18 @@ export default function Experience() {
       <div className={`text-center mt-20 transform transition-all duration-1000 delay-2000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
         <div className="bg-gray-900/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-700/30 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 via-green-500/5 via-blue-500/5 to-purple-500/5 animate-achievement-glow bg-[length:400%_400%]" />
-          <h3 className="relative text-3xl font-bold bg-gradient-to-r from-yellow-500 to-emerald-400 bg-clip-text text-transparent mb-4">
-            Ready for the Next Adventure? 🚀
-          </h3>
-          <p className="relative text-gray-300 mb-6">
-            Let's create something extraordinary together and add to this amazing journey
-          </p>
-          <button className="relative group px-12 py-4 bg-gradient-to-r from-amber-500 via-green-500 via-blue-500 to-purple-500 rounded-full font-bold text-black text-lg overflow-hidden transform hover:scale-110 transition-all duration-300 animate-achievement-glow bg-[length:400%_400%]">
-            <span className="relative z-10">Start a Project</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </button>
+         <h3 className="relative text-3xl font-bold bg-gradient-to-r from-yellow-500 to-emerald-400 bg-clip-text text-transparent mb-4">
+  Ready to Join Your Team? 🚀
+</h3>
+<p className="relative text-gray-300 mb-6">
+  These hackathons, open‑source contributions, and simulations reflect how I learn fast and deliver under pressure. I&apos;m excited to bring this energy to a full‑time or internship role.
+</p>
+<a href="mailto:keshavraj9954@gmail.com">
+  <button className="relative group px-12 py-4 bg-gradient-to-r from-amber-500 via-green-500 via-blue-500 to-purple-500 rounded-full font-bold text-black text-lg overflow-hidden transform hover:scale-110 transition-all duration-300 animate-achievement-glow bg-[length:400%_400%]">
+    <span className="relative z-10">Hire Me</span>
+    <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+  </button>
+</a>
         </div>
       </div>
 
