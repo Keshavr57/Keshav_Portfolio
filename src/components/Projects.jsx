@@ -4,12 +4,12 @@ const projects = [
   {
     title: "Quick Ai",
     desc: "AI-powered article generation...",
-    video: "/QuickAi.mp4", // ✅ must be in public/
+    video: "/AivoraAi.mp4", // ✅ must be in public/
     tags: ["React", "Tailwind", "Framer Motion", "Node.js", "Express.js", "PostgreSQL"],
     color: "from-pink-500 to-purple-600",
     bgPattern: "art",
     stats: { views: "12.5K", likes: "2.3K", duration: "6 weeks" },
-    url: "https://quick-ai-zrga.vercel.app/",
+    url: "https://quick-ai-76zu.vercel.app/",
     type: "external",
   },
   {
