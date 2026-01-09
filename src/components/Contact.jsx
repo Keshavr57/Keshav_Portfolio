@@ -91,29 +91,20 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      // Using EmailJS - more reliable for direct email sending
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject || `New hiring inquiry from ${formData.name}`,
-        message: formData.message,
-        to_email: 'keshavconnect4@gmail.com'
-      };
+      // Create FormData for FormSubmit
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('subject', formData.subject || `New hiring inquiry from ${formData.name}`);
+      formDataToSend.append('message', formData.message);
+      formDataToSend.append('_subject', `Portfolio Contact: ${formData.subject || 'New Message'}`);
+      formDataToSend.append('_captcha', 'false');
+      formDataToSend.append('_template', 'table');
 
-      // Simple fetch to a working email service
+      // Use fetch to submit without page redirect
       const response = await fetch('https://formsubmit.co/keshavconnect4@gmail.com', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject || `New hiring inquiry from ${formData.name}`,
-          message: formData.message,
-          _subject: `Portfolio Contact: ${formData.subject || 'New Message'}`,
-          _captcha: false
-        })
+        body: formDataToSend
       });
 
       if (response.ok) {
@@ -122,6 +113,8 @@ export default function Contact() {
           message: "Message sent successfully! I'll get back to you within 24 hours.",
           type: "success"
         });
+        
+        // Clear form
         setFormData({ name: '', email: '', subject: '', message: '' });
         setFormProgress(0);
         
@@ -134,24 +127,59 @@ export default function Contact() {
     } catch (error) {
       console.error('Error sending message:', error);
       
-      // Fallback: Create mailto link and copy to clipboard
-      const { name, email, subject, message } = formData;
-      const mailSubject = subject || `New hiring inquiry from ${name}`;
-      const mailBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-      const contactInfo = `Subject: ${mailSubject}\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}\n\nPlease send this to: keshavconnect4@gmail.com`;
-      
-      if (navigator.clipboard) {
-        await navigator.clipboard.writeText(contactInfo);
+      // Fallback: Try alternative method
+      try {
+        // Alternative: Use Web3Forms as backup
+        const backupFormData = new FormData();
+        backupFormData.append('access_key', 'c9e03cd9-ec0b-4c3a-ac83-1e0195b5c4c0');
+        backupFormData.append('name', formData.name);
+        backupFormData.append('email', formData.email);
+        backupFormData.append('subject', formData.subject || `New message from ${formData.name}`);
+        backupFormData.append('message', formData.message);
+        backupFormData.append('to', 'keshavconnect4@gmail.com');
+
+        const backupResponse = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: backupFormData
+        });
+
+        const result = await backupResponse.json();
+
+        if (result.success) {
+          setSubmitSuccess(true);
+          setNotification({
+            message: "Message sent successfully via backup service!",
+            type: "success"
+          });
+          setFormData({ name: '', email: '', subject: '', message: '' });
+          setFormProgress(0);
+          
+          setTimeout(() => {
+            setSubmitSuccess(false);
+          }, 5000);
+        } else {
+          throw new Error('Backup service failed');
+        }
+      } catch (backupError) {
+        // Final fallback: Copy to clipboard and show mailto
+        const { name, email, subject, message } = formData;
+        const mailSubject = subject || `New hiring inquiry from ${name}`;
+        const mailBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+        const contactInfo = `Subject: ${mailSubject}\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}\n\nPlease send this to: keshavconnect4@gmail.com`;
+        
+        if (navigator.clipboard) {
+          await navigator.clipboard.writeText(contactInfo);
+        }
+        
+        setNotification({
+          message: "Form copied to clipboard! Please paste and send to keshavconnect4@gmail.com",
+          type: "warning"
+        });
+        
+        // Also try mailto as backup
+        const mailtoLink = `mailto:keshavconnect4@gmail.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+        window.open(mailtoLink, '_blank');
       }
-      
-      setNotification({
-        message: "Form copied to clipboard! Please paste and send to keshavconnect4@gmail.com",
-        type: "warning"
-      });
-      
-      // Also try mailto as backup
-      const mailtoLink = `mailto:keshavconnect4@gmail.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
-      window.open(mailtoLink, '_blank');
     }
 
     setIsSubmitting(false);
@@ -273,15 +301,9 @@ export default function Contact() {
           )}
 
           <form 
-            action="https://formsubmit.co/keshavconnect4@gmail.com"
-            method="POST"
             onSubmit={handleFormSubmit}
             className="relative bg-gray-900/90 backdrop-blur-sm p-8 md:p-12 rounded-2xl border border-gray-700/30 shadow-2xl space-y-8 overflow-hidden"
           >
-            {/* Hidden FormSubmit configurations */}
-            <input type="hidden" name="_subject" value="New Portfolio Contact Form Submission" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_template" value="table" />
             {/* Name & Email */}
             <div className="grid md:grid-cols-2 gap-6">
               {['name', 'email'].map(field => (
