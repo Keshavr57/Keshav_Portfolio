@@ -9,23 +9,24 @@ export default function About() {
   const sectionRef = useRef(null);
 
 const paragraphs = [
-  "I am a full‑stack developer focused on building scalable web applications with the MERN stack. I enjoy turning product ideas into fast, reliable experiences using modern JavaScript frameworks.",
-  "I have hands‑on experience with React.js, Node.js, Express.js, PostgreSQL (Neon), authentication (JWT, Clerk), and integrations like OpenAI APIs. I’ve built projects such as Aivora AI, CompareX, and this portfolio to solve real‑world problems.",
-  "I actively improve my problem‑solving skills through LeetCode (120+ problems solved) and open‑source contributions like Hacktoberfest. I’m currently pursuing a Bachelor of Applied Science (Computer Science) at Rishihood University × Newton School of Technology and looking for full‑stack / web developer opportunities."
+  "I am a Full Stack Developer specializing in the MERN stack, with experience building scalable systems and end-to-end applications. Two-time hackathon winner with strong focus on secure, reliable, and user-focused solutions. Currently pursuing B.Tech in Computer Science at Rishihood University & Newton School of Technology.",
+  "I have hands-on experience with React.js, Node.js, Express.js, MongoDB, PostgreSQL, and modern development tools. I've built projects like SuperStock (a stock market analysis platform), Aivora AI (content generation tool), and CompareX (product comparison platform). My technical expertise spans across frontend frameworks, backend APIs, database design, and cloud deployment.",
+  "I actively solve algorithmic problems on LeetCode (120+ problems solved) and contribute to open-source projects. I'm passionate about creating efficient, user-friendly applications and am currently seeking full-stack developer opportunities where I can contribute to meaningful projects and continue growing as a developer."
 ];
 
 const skills = [
   'JavaScript',
-  'TypeScript',
+  'TypeScript', 
   'React.js',
   'Node.js',
   'Express.js',
-  'Next.js',
-  'PostgreSQL (Neon)',
   'MongoDB',
+  'PostgreSQL',
+  'HTML/CSS',
   'Tailwind CSS',
-  'OpenAI API',
-  'Git & GitHub'
+  'Git & GitHub',
+  'RESTful APIs',
+  'JWT Authentication'
 ];
 
   useEffect(() => {
@@ -180,7 +181,7 @@ const skills = [
 
             {/* Skills Animation */}
             <div className={`mt-12 transform transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-              <h3 className="text-xl font-semibold mb-6 text-emerald-400">Technologies I Love</h3>
+              <h3 className="text-xl font-semibold mb-6 text-emerald-400">Technical Skills</h3>
               <div className="flex flex-wrap gap-3">
                 {skills.map((skill, index) => (
                   <span
@@ -227,10 +228,10 @@ const skills = [
                 <div className="relative z-10 space-y-4">
                   <div className="text-6xl animate-bounce" style={{ animationDuration: '2s' }}>⚡</div>
                   <div className="text-2xl font-bold bg-gradient-to-r from-yellow-500 to-emerald-400 bg-clip-text text-transparent">
-                    Creative Code
+                    Full Stack Developer
                   </div>
                   <div className="text-sm text-gray-400 max-w-xs">
-                    Where imagination meets implementation
+                    Building scalable applications with modern technologies
                   </div>
                   
                   {/* Binary background */}

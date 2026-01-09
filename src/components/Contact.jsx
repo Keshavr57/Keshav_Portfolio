@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import Notification from './Notification';
 
 export default function Contact() {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,6 +16,7 @@ export default function Contact() {
   const [formProgress, setFormProgress] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [notification, setNotification] = useState(null);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -76,30 +78,83 @@ export default function Contact() {
     }, 1000);
   };
 
-  const handleSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (formProgress < 75) return;
+    if (formProgress < 75) {
+      setNotification({
+        message: "Please complete at least 75% of the form",
+        type: "warning"
+      });
+      return;
+    }
 
     setIsSubmitting(true);
 
-    const { name, email, subject, message } = formData;
+    try {
+      // Using EmailJS - more reliable for direct email sending
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject || `New hiring inquiry from ${formData.name}`,
+        message: formData.message,
+        to_email: 'keshavconnect4@gmail.com'
+      };
 
-    const mailSubject = subject || `New hiring inquiry from ${name || 'your portfolio'}`;
-    const mailBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+      // Simple fetch to a working email service
+      const response = await fetch('https://formsubmit.co/keshavconnect4@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || `New hiring inquiry from ${formData.name}`,
+          message: formData.message,
+          _subject: `Portfolio Contact: ${formData.subject || 'New Message'}`,
+          _captcha: false
+        })
+      });
 
-    const mailtoLink = `mailto:keshavraj9954@gmail.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
-
-    window.location.href = mailtoLink;
+      if (response.ok) {
+        setSubmitSuccess(true);
+        setNotification({
+          message: "Message sent successfully! I'll get back to you within 24 hours.",
+          type: "success"
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setFormProgress(0);
+        
+        setTimeout(() => {
+          setSubmitSuccess(false);
+        }, 5000);
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      
+      // Fallback: Create mailto link and copy to clipboard
+      const { name, email, subject, message } = formData;
+      const mailSubject = subject || `New hiring inquiry from ${name}`;
+      const mailBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+      const contactInfo = `Subject: ${mailSubject}\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}\n\nPlease send this to: keshavconnect4@gmail.com`;
+      
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(contactInfo);
+      }
+      
+      setNotification({
+        message: "Form copied to clipboard! Please paste and send to keshavconnect4@gmail.com",
+        type: "warning"
+      });
+      
+      // Also try mailto as backup
+      const mailtoLink = `mailto:keshavconnect4@gmail.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+      window.open(mailtoLink, '_blank');
+    }
 
     setIsSubmitting(false);
-    setSubmitSuccess(true);
-
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setFormProgress(0);
-
-    setTimeout(() => {
-      setSubmitSuccess(false);
-    }, 3000);
   };
 
   const getFieldIcon = (field) => {
@@ -123,11 +178,20 @@ export default function Contact() {
   };
 
   return (
-    <section 
-      ref={sectionRef}
-      id="contact" 
-      className="py-24 px-6 md:px-16 max-w-4xl mx-auto relative overflow-hidden"
-    >
+    <>
+      {notification && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={() => setNotification(null)}
+        />
+      )}
+      
+      <section 
+        ref={sectionRef}
+        id="contact" 
+        className="py-24 px-6 md:px-16 max-w-4xl mx-auto relative overflow-hidden"
+      >
       {/* Background */}
       <div className="absolute inset-0">
         <div 
@@ -199,15 +263,25 @@ export default function Contact() {
               <div className="text-center">
                 <div className="text-6xl mb-4 animate-bounce">🎉</div>
                 <h3 className="text-2xl font-bold text-white mb-2">Message Sent Successfully!</h3>
-                <p className="text-green-100">I'll get back to you within 24 hours</p>
+                <p className="text-green-100 mb-4">I'll get back to you within 24 hours</p>
+                <div className="text-sm text-green-200 bg-green-800/30 p-3 rounded-lg">
+                  <p>Your message has been delivered to</p>
+                  <p className="font-mono">keshavconnect4@gmail.com</p>
+                </div>
               </div>
             </div>
           )}
 
           <form 
-            onSubmit={handleSubmit}
+            action="https://formsubmit.co/keshavconnect4@gmail.com"
+            method="POST"
+            onSubmit={handleFormSubmit}
             className="relative bg-gray-900/90 backdrop-blur-sm p-8 md:p-12 rounded-2xl border border-gray-700/30 shadow-2xl space-y-8 overflow-hidden"
           >
+            {/* Hidden FormSubmit configurations */}
+            <input type="hidden" name="_subject" value="New Portfolio Contact Form Submission" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
             {/* Name & Email */}
             <div className="grid md:grid-cols-2 gap-6">
               {['name', 'email'].map(field => (
@@ -217,6 +291,7 @@ export default function Contact() {
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-xl z-10">{getFieldIcon(field)}</div>
                     <input 
                       type={field === 'email' ? 'email' : 'text'}
+                      name={field}
                       placeholder={field === 'name' ? 'Your Name' : 'Your Email'}
                       required
                       value={formData[field]}
@@ -242,6 +317,7 @@ export default function Contact() {
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-xl z-10">{getFieldIcon('subject')}</div>
                 <input 
                   type="text"
+                  name="subject"
                   placeholder="Project Subject"
                   value={formData.subject}
                   onChange={(e) => handleInputChange('subject', e.target.value)}
@@ -261,6 +337,7 @@ export default function Contact() {
               <div className="relative">
                 <div className="absolute left-4 top-6 text-xl z-10">{getFieldIcon('message')}</div>
                 <textarea 
+                  name="message"
                   placeholder="Share details about the role, your company, and why you&#39;re a good fit..." 
                   required 
                   rows={6}
@@ -321,6 +398,56 @@ export default function Contact() {
         </div>
       </div>
 
+      {/* Direct Contact Info */}
+      <div className={`text-center mt-16 transform transition-all duration-1000 delay-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+        <div className="bg-gray-900/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-700/30 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-green-500/5 to-purple-500/5 animate-contact-glow bg-[length:300%_300%]" />
+          <h3 className="relative text-2xl font-bold bg-gradient-to-r from-yellow-500 to-emerald-400 bg-clip-text text-transparent mb-4">
+            Direct Contact Information
+          </h3>
+          <div className="relative space-y-4">
+            <div className="flex items-center justify-center space-x-3">
+              <span className="text-2xl">📧</span>
+              <a 
+                href="mailto:keshavconnect4@gmail.com" 
+                className="text-lg text-emerald-400 hover:text-yellow-500 transition-colors duration-300 font-mono"
+              >
+                keshavconnect4@gmail.com
+              </a>
+            </div>
+            <p className="text-gray-300 text-sm">
+              If the form doesn't work, feel free to email me directly!
+            </p>
+            <div className="flex justify-center space-x-4 mt-6">
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText('keshavconnect4@gmail.com');
+                  setNotification({
+                    message: "Email address copied to clipboard!",
+                    type: "success"
+                  });
+                }}
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm transition-colors duration-300"
+              >
+                Copy Email
+              </button>
+              <button
+                onClick={() => {
+                  window.open('mailto:keshavconnect4@gmail.com', '_blank');
+                  setNotification({
+                    message: "Opening email app...",
+                    type: "info"
+                  });
+                }}
+                className="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg text-sm transition-colors duration-300"
+              >
+                Open Email App
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <style jsx>{`
         @keyframes float-contact {
           0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
@@ -344,6 +471,7 @@ export default function Contact() {
         .animate-contact-glow { animation: contact-glow 4s ease infinite; }
         .animate-spin-contact { animation: spin-contact 20s linear infinite; }
       `}</style>
-    </section>
+      </section>
+    </>
   ); 
 }

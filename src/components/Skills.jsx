@@ -2,47 +2,47 @@ import { useState, useEffect, useRef } from 'react';
 
 const skills = [
   {
-    icon: "🧩",
-    title: "MERN & Full‑Stack",
-    desc: "JavaScript, TypeScript, React.js, Node.js, Express.js, Next.js",
+    icon: "⚛️",
+    title: "Frontend Development",
+    desc: "React.js, HTML, CSS, JavaScript, TypeScript, Responsive Design",
+    color: "from-blue-500 to-cyan-400",
+    bgColor: "from-blue-500/10 to-cyan-400/10",
+    level: 92,
+    experience: "2+ years",
+    projects: 8,
+    pattern: "react"
+  },
+  {
+    icon: "🚀",
+    title: "Backend Development",
+    desc: "Node.js, Express.js, RESTful APIs, JWT Authentication, Server Architecture",
     color: "from-emerald-500 to-green-400",
     bgColor: "from-emerald-500/10 to-green-400/10",
-    level: 92,
+    level: 88,
     experience: "2+ years",
     projects: 6,
     pattern: "server"
   },
   {
-    icon: "🎨",
-    title: "Frontend & UI",
-    desc: "React.js, Tailwind CSS, Framer Motion, Responsive UI/UX",
-    color: "from-blue-500 to-cyan-400",
-    bgColor: "from-blue-500/10 to-cyan-400/10",
-    level: 90,
-    experience: "2+ years",
-    projects: 6,
-    pattern: "react"
-  },
-  {
     icon: "🗄️",
-    title: "Backend & Databases",
-    desc: "PostgreSQL (Neon), MongoDB, Prisma ORM, REST APIs",
+    title: "Database Management",
+    desc: "MongoDB, PostgreSQL, Database Design, Data Modeling, Query Optimization",
     color: "from-purple-500 to-pink-500",
     bgColor: "from-purple-500/10 to-pink-500/10",
-    level: 88,
+    level: 85,
     experience: "1.5+ years",
-    projects: 4,
+    projects: 5,
     pattern: "cloud"
   },
   {
-    icon: "⚙️",
-    title: "Tools & Platforms",
-    desc: "Git, GitHub, Clerk, Firebase, Postman, Vercel, OpenAI API",
+    icon: "🛠️",
+    title: "Development Tools",
+    desc: "Git & GitHub, VS Code, Postman, npm/yarn, Debugging, Testing",
     color: "from-orange-500 to-yellow-400",
     bgColor: "from-orange-500/10 to-yellow-400/10",
-    level: 85,
+    level: 90,
     experience: "2+ years",
-    projects: 8,
+    projects: 10,
     pattern: "design"
   }
 ];
@@ -422,12 +422,28 @@ export default function Skills() {
 <p className="relative text-gray-300 mb-6">
   If you&apos;re looking for a developer who can own features end‑to‑end across React, Node.js, and PostgreSQL, I&apos;d love to work with you.
 </p>
-<a href="mailto:keshavraj9954@gmail.com">
-  <button className="relative group px-12 py-4 bg-gradient-to-r from-yellow-500 via-emerald-400 to-pink-500 rounded-full font-bold text-black text-lg overflow-hidden transform hover:scale-110 transition-all duration-300 animate-rainbow bg-[length:400%_400%]">
-    <span className="relative z-10">Hire Me</span>
-    <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-  </button>
-</a>
+<button 
+  onClick={() => {
+    // Scroll to contact form
+    document.getElementById('contact')?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+    
+    // Show notification
+    setTimeout(() => {
+      const notification = document.createElement('div');
+      notification.className = 'fixed top-4 right-4 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg';
+      notification.textContent = 'Please fill the contact form below to hire me!';
+      document.body.appendChild(notification);
+      setTimeout(() => notification.remove(), 3000);
+    }, 500);
+  }}
+  className="relative group px-12 py-4 bg-gradient-to-r from-yellow-500 via-emerald-400 to-pink-500 rounded-full font-bold text-black text-lg overflow-hidden transform hover:scale-110 transition-all duration-300 animate-rainbow bg-[length:400%_400%] cursor-pointer"
+>
+  <span className="relative z-10">Hire Me</span>
+  <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+</button>
         </div>
       </div>
 

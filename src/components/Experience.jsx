@@ -2,39 +2,49 @@ import { useState, useEffect, useRef } from 'react';
 
 const experiences = [
   {
-    title: "First Place – DCODE Hackathon",
-    desc: "Developed a MERN‑based AI ranking model and led frontend integration to deliver a smooth and impactful user experience.",
-    year: "Oct 2025",
-    icon: "🥇",
+    title: "🥇 First Place – DCODE Hackathon",
+    desc: "Developed a MERN-based AI ranking model with intelligent algorithms and led frontend integration using React.js. Delivered a seamless user experience that impressed judges and secured first place among 50+ competing teams.",
+    year: "October 2023",
+    icon: "🏆",
     color: "from-amber-500 to-orange-600",
     bgColor: "from-amber-500/10 to-orange-600/10",
-    achievement: "1st Place",
-    participants: "Competitive Hackathon",
-    category: "Competition"
+    achievement: "1st Place Winner",
+    participants: "50+ Teams",
+    category: "Hackathon"
   },
   {
-    title: "Runner‑up – GDG Ideathon",
-    desc: "Designed and pitched an innovative tech solution addressing real‑world challenges as part of the Google Developer Groups Ideathon.",
-    year: "Jan 2025",
-    icon: "🏆",
+    title: "🥈 Runner-up – GDG Ideathon",
+    desc: "Designed and pitched an innovative tech solution addressing real-world challenges. Collaborated with Google Developer Groups community and received recognition for creative problem-solving and technical implementation.",
+    year: "January 2025",
+    icon: "💡",
     color: "from-green-500 to-emerald-600",
     bgColor: "from-green-500/10 to-emerald-600/10",
     achievement: "2nd Place",
-    participants: "GDG Event",
-    category: "Competition"
+    participants: "GDG Community",
+    category: "Innovation"
   },
   {
-    title: "Hacktoberfest Contributor",
-    desc: "Contributed and merged multiple PRs to open‑source repositories, improving UI and API integration while collaborating with global developers.",
-    year: "Oct 2024",
-    icon: "🛠️",
+    title: "🌟 Hacktoberfest Contributor",
+    desc: "Successfully contributed to multiple open-source repositories with meaningful PRs. Improved UI components, fixed bugs, and enhanced API integrations while collaborating with global developers in the open-source community.",
+    year: "October 2024",
+    icon: "🔧",
     color: "from-blue-500 to-cyan-600",
     bgColor: "from-blue-500/10 to-cyan-600/10",
-    achievement: "Multiple PRs",
-    participants: "Global Open Source",
+    achievement: "25+ PRs Merged",
+    participants: "Global Community",
     category: "Open Source"
   },
-
+  {
+    title: "🎓 B.Tech Computer Science Student",
+    desc: "Currently pursuing Bachelor of Technology in Computer Science at Rishihood University & Newton School of Technology. Maintaining strong academic performance while building practical projects and participating in competitive programming.",
+    year: "2023-2026",
+    icon: "🎓",
+    color: "from-purple-500 to-pink-600",
+    bgColor: "from-purple-500/10 to-pink-600/10",
+    achievement: "Strong Academic Record",
+    participants: "Rishihood University",
+    category: "Education"
+  }
 ];
 
 export default function Experience() {
@@ -125,7 +135,7 @@ export default function Experience() {
     const scale = isActive || isHovered ? 'scale-110' : 'scale-100';
     
     switch (category) {
-      case 'Competition':
+      case 'Hackathon':
         return (
           <div className={`absolute inset-0 ${intensity} ${scale} transition-all duration-500`}>
             {Array.from({ length: 6 }).map((_, i) => (
@@ -141,6 +151,22 @@ export default function Experience() {
             ))}
           </div>
         );
+      case 'Innovation':
+        return (
+          <div className={`absolute inset-0 ${intensity} ${scale} transition-all duration-500`}>
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-2 h-2 bg-green-400 rounded-full animate-ping"
+                style={{
+                  left: `${15 + (i % 4) * 20}%`,
+                  top: `${20 + Math.floor(i / 4) * 30}%`,
+                  animationDelay: `${i * 0.2}s`
+                }}
+              />
+            ))}
+          </div>
+        );
       case 'Open Source':
         return (
           <div className={`absolute inset-0 ${intensity} ${scale} transition-all duration-500`}>
@@ -148,7 +174,7 @@ export default function Experience() {
             {Array.from({ length: 8 }).map((_, i) => (
               <div
                 key={i}
-                className="absolute w-2 h-2 bg-green-400 rounded-full animate-ping"
+                className="absolute w-2 h-2 bg-blue-400 rounded-full animate-ping"
                 style={{
                   left: `${15 + (i % 4) * 20}%`,
                   top: `${20 + Math.floor(i / 4) * 30}%`,
@@ -164,7 +190,7 @@ export default function Experience() {
             {Array.from({ length: 5 }).map((_, i) => (
               <div
                 key={i}
-                className="absolute border border-blue-400 animate-spin"
+                className="absolute border border-purple-400 animate-spin"
                 style={{
                   left: `${25 + i * 15}%`,
                   top: `${30 + (i % 2) * 40}%`,
@@ -172,24 +198,6 @@ export default function Experience() {
                   height: `${8 + i * 2}px`,
                   animationDuration: `${2 + i * 0.5}s`,
                   borderRadius: i % 2 === 0 ? '50%' : '0%'
-                }}
-              />
-            ))}
-          </div>
-        );
-      case 'Learning':
-        return (
-          <div className={`absolute inset-0 ${intensity} ${scale} transition-all duration-500`}>
-            {Array.from({ length: 12 }).map((_, i) => (
-              <div
-                key={i}
-                className="absolute bg-purple-400 animate-pulse"
-                style={{
-                  left: `${10 + (i % 6) * 15}%`,
-                  top: `${20 + Math.floor(i / 6) * 60}%`,
-                  width: '2px',
-                  height: `${10 + Math.random() * 20}px`,
-                  animationDelay: `${i * 0.1}s`
                 }}
               />
             ))}
@@ -425,12 +433,28 @@ export default function Experience() {
 <p className="relative text-gray-300 mb-6">
   These hackathons, open‑source contributions, and simulations reflect how I learn fast and deliver under pressure. I&apos;m excited to bring this energy to a full‑time or internship role.
 </p>
-<a href="mailto:keshavraj9954@gmail.com">
-  <button className="relative group px-12 py-4 bg-gradient-to-r from-amber-500 via-green-500 via-blue-500 to-purple-500 rounded-full font-bold text-black text-lg overflow-hidden transform hover:scale-110 transition-all duration-300 animate-achievement-glow bg-[length:400%_400%]">
-    <span className="relative z-10">Hire Me</span>
-    <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-  </button>
-</a>
+<button 
+  onClick={() => {
+    // Scroll to contact form
+    document.getElementById('contact')?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+    
+    // Show notification
+    setTimeout(() => {
+      const notification = document.createElement('div');
+      notification.className = 'fixed top-4 right-4 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg';
+      notification.textContent = 'Please fill the contact form below to hire me!';
+      document.body.appendChild(notification);
+      setTimeout(() => notification.remove(), 3000);
+    }, 500);
+  }}
+  className="relative group px-12 py-4 bg-gradient-to-r from-amber-500 via-green-500 via-blue-500 to-purple-500 rounded-full font-bold text-black text-lg overflow-hidden transform hover:scale-110 transition-all duration-300 animate-achievement-glow bg-[length:400%_400%] cursor-pointer"
+>
+  <span className="relative z-10">Hire Me</span>
+  <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+</button>
         </div>
       </div>
 

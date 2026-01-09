@@ -58,17 +58,42 @@ export default function Hero() {
           </h2>
           
           <p className={`italic mt-6 text-lg text-gray-300 transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            Crafting timeless websites & digital experiences.
+            Full Stack Developer specializing in MERN stack with expertise building scalable systems and end-to-end applications. Two-time hackathon winner with strong focus on secure, reliable, and user-focused solutions. Currently pursuing B.Tech at Rishihood University.
           </p>
           
           <div className={`transform transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <a
-              href="#projects"
-              className="group inline-block mt-8 px-8 py-4 rounded-full font-semibold bg-gradient-to-r from-yellow-500 to-emerald-400 text-[#0a0a1a] shadow-lg hover:shadow-yellow-500/25 hover:scale-110 transition-all duration-300 relative overflow-hidden"
-            >
-              <span className="relative z-10">Explore My Work</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="#projects"
+                className="group inline-block px-8 py-4 rounded-full font-semibold bg-gradient-to-r from-yellow-500 to-emerald-400 text-[#0a0a1a] shadow-lg hover:shadow-yellow-500/25 hover:scale-110 transition-all duration-300 relative overflow-hidden text-center"
+              >
+                <span className="relative z-10">Explore My Work</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </a>
+              
+              <button
+                onClick={() => {
+                  // Scroll to contact form
+                  document.getElementById('contact')?.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                  });
+                  
+                  // Show notification
+                  setTimeout(() => {
+                    const notification = document.createElement('div');
+                    notification.className = 'fixed top-4 right-4 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg';
+                    notification.textContent = 'Scroll down to fill the contact form!';
+                    document.body.appendChild(notification);
+                    setTimeout(() => notification.remove(), 3000);
+                  }, 500);
+                }}
+                className="group inline-block px-8 py-4 rounded-full font-semibold bg-transparent border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-[#0a0a1a] shadow-lg hover:shadow-yellow-500/25 hover:scale-110 transition-all duration-300 relative overflow-hidden text-center cursor-pointer"
+              >
+                <span className="relative z-10">Hire Me</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </button>
+            </div>
           </div>
 
           {/* Floating Icons */}

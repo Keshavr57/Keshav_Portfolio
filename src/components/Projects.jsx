@@ -2,37 +2,37 @@ import { useState, useEffect, useRef } from "react";
 
 const projects = [
   {
-    title: "Quick Ai",
-    desc: "AI-powered article generation...",
-    video: "/AivoraAi.mp4", // ✅ must be in public/
-    tags: ["React", "Tailwind", "Framer Motion", "Node.js", "Express.js", "PostgreSQL"],
-    color: "from-pink-500 to-purple-600",
-    bgPattern: "art",
-    stats: { views: "12.5K", likes: "2.3K", duration: "6 weeks" },
+    title: "SmartStock",
+    desc: "A comprehensive stock market analysis platform with real-time data visualization and risk decision-making tools for investors. Built with MERN stack and integrated financial APIs.",
+    video: "/SmartStock.mp4", // Using available video as placeholder
+    tags: ["React", "Node.js", "Express.js", "MongoDB", "Financial APIs", "Chart.js"],
+    color: "from-blue-500 to-cyan-600",
+    bgPattern: "finance",
+    stats: { users: "500+", trades: "2.5K", uptime: "99.9%" },
+    url: "https://smart-stock-ku3d.vercel.app/",
+    type: "external",
+  },
+  {
+    title: "Aivora AI",
+    desc: "AI-powered content generation platform with advanced natural language processing. Features include article generation, content optimization, and multi-format export capabilities.",
+    video: "/AivoraAi.mp4",
+    tags: ["React", "Node.js", "OpenAI API", "MongoDB", "JWT", "Tailwind CSS"],
+    color: "from-purple-500 to-pink-600",
+    bgPattern: "ai",
+    stats: { content: "10K+", users: "1.2K", accuracy: "95%" },
     url: "https://quick-ai-76zu.vercel.app/",
     type: "external",
   },
   {
     title: "CompareX",
-    desc: "Developed a full-stack web app...",
-    video: "/comparex.mp4", // ✅ must be in public/
-    tags: ["React", "Tailwind", "Framer Motion", "Node.js", "Express.js", "PostgreSQL"],
+    desc: "Full-stack product comparison platform enabling users to compare specifications, prices, and reviews across multiple categories with intelligent recommendation system.",
+    video: "/comparex.mp4",
+    tags: ["React", "Node.js", "Express.js", "PostgreSQL", "REST APIs", "Responsive Design"],
     color: "from-green-500 to-emerald-600",
-    bgPattern: "tech",
-    stats: { views: "8.1K", likes: "1.7K", duration: "4 weeks" },
-    url: "https://comparex.vercel.app/",
+    bgPattern: "comparison",
+    stats: { products: "5K+", comparisons: "15K", categories: "20+" },
+    url: "https://compare-x.vercel.app/",
     type: "external",
-  },
-  {
-    title: "Modern Portfolio",
-    desc: "Personal portfolio built with React...",
-    video: "/Portfolio.mp4", // ✅ put this in /public
-    tags: ["React", "Tailwind", "Framer Motion"],
-    color: "from-indigo-500 to-purple-700",
-    bgPattern: "data",
-    stats: { metrics: "50+", charts: "15", speed: "2.1s" },
-    url: "#",
-    type: "internal",
   },
 ];
 
